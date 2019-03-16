@@ -7,10 +7,7 @@ public class TestPicerija {
 
 	public static void main(String[] args) {
 
-		// Pizza pizza = new Pizza();
-		// ArrayList<Pizza> listOfPizzas = new ArrayList<>();
-		// listOfPizzas.add(pizza);
-
+	
 		Pizzeria pizzeria = new Pizzeria();
 		pizzeria.napraviPicu(3);
 		pizzeria.prodajPicu(2);
@@ -74,7 +71,7 @@ public class TestPicerija {
 				}
 
 			} catch (InputMismatchException e) {
-				System.out.print("Pogresan unos, unesite ponovo: ");
+				System.out.println("Pogresan unos, unesite ponovo: ");
 				input.nextLine();
 			}
 
@@ -83,10 +80,6 @@ public class TestPicerija {
 		input.close();
 		System.out.println("Kraj programa!");
 		System.exit(0);
-	}
-
-	public static void prodaja(Pizzeria picerija) {
-
 	}
 
 	public static void stanje(Pizzeria pizzeria) {
