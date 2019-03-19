@@ -18,31 +18,31 @@ public class Pizzeria {
 		return listOfPizzas.size();
 	}
 	
-	private void zaduziPicu() {
+	private void addPizzaToList() {
 		Pizza pizza = new Pizza();
 		this.listOfPizzas.add(pizza);
 	}
 	
-	private void razduziPicu() {
+	private void removePizzaFromList() {
 		this.listOfPizzas.remove(listOfPizzas.size() - 1);
 	}
 	
-	public void napraviPicu(int brojNapravljenihPica) {
-		for (int i = 0; i < brojNapravljenihPica; i++) {
-			zaduziPicu();
+	public void makePizzas(int numberOfMadePizzas) {
+		for (int i = 0; i < numberOfMadePizzas; i++) {
+			addPizzaToList();
 		}
-		System.out.println("\t\t\tNapravljene su " + brojNapravljenihPica + " pica/e i novo stanje je " + getState());
+		System.out.println("\t\t\tNapravljene su " + numberOfMadePizzas + " pica/e i novo stanje je " + getState());
 	}
 
-	public void prodajPicu(int brojProdatihPica) {
-		if (getState() < brojProdatihPica) {
+	public void sellPizza(int numberOfSoldPizzas) {
+		if (getState() < numberOfSoldPizzas) {
 			System.out.println("Nema dovoljno pica za prodaju (" + getState() + " na stanju)");
 			return;
 		} else {
-			for (int i = 0; i < brojProdatihPica; i++) {
-				razduziPicu();
+			for (int i = 0; i < numberOfSoldPizzas; i++) {
+				removePizzaFromList();
 			}
 		}
-		System.out.println("\t\t\tProdali ste " + brojProdatihPica + " picu/e i novo stanje je " + getState());
+		System.out.println("\t\t\tProdali ste " + numberOfSoldPizzas + " picu/e i novo stanje je " + getState());
 	}
 }
