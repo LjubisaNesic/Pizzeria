@@ -81,7 +81,7 @@ public class TestPicerija {
 
 			switch (choice) {
 			case 1:
-				System.out.print("\t\t\tKoliko pica zelite da se napravi (" + pizzeria.getState() + " na stanju): ");
+				System.out.print("\t\t\tKoliko pica zelite da se napravi (" + pizzeria.getSize() + " na stanju): ");
 				int numberOfMadePizzas = input.nextInt();
 				pizzeria.makePizzas(numberOfMadePizzas);
 				break;
@@ -106,7 +106,7 @@ public class TestPicerija {
 
 			switch (choice) {
 			case 1:
-				System.out.print("\t\t\tKoliko pica zelite da prodate (" + pizzeria.getState() + " na stanju): ");
+				System.out.print("\t\t\tKoliko pica zelite da prodate (" + pizzeria.getSize() + " na stanju): ");
 				int numberOfSoldPizzas = input.nextInt();
 				pizzeria.sellPizza(numberOfSoldPizzas);
 				break;
@@ -121,6 +121,6 @@ public class TestPicerija {
 	}
 
 	public static void state(Pizzeria pizzeria) {
-		System.out.println("\tNa stanju " + pizzeria.getState() + " pice/a");
+		System.out.println("\tNa stanju " + pizzeria.getSize() + " pice/a");
 	}
 }

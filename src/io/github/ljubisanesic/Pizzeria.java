@@ -1,10 +1,11 @@
 package io.github.ljubisanesic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pizzeria {
 	
-	private ArrayList<Pizza> listOfPizzas = new ArrayList<>();
+	private List<Pizza> listOfPizzas = new ArrayList<>();
 	
 	public Pizzeria() {
 		
@@ -14,7 +15,7 @@ public class Pizzeria {
 		this.listOfPizzas = listOfPizzas;
 	}
 	
-	public int getState() {
+	public int getSize() {
 		return listOfPizzas.size();
 	}
 	
@@ -31,18 +32,18 @@ public class Pizzeria {
 		for (int i = 0; i < numberOfMadePizzas; i++) {
 			addPizzaToList();
 		}
-		System.out.println("\t\t\tNapravljene su " + numberOfMadePizzas + " pica/e i novo stanje je " + getState());
+		System.out.println("\t\t\tNapravljene su " + numberOfMadePizzas + " pica/e i novo stanje je " + getSize());
 	}
 
 	public void sellPizza(int numberOfSoldPizzas) {
-		if (getState() < numberOfSoldPizzas) {
-			System.out.println("Nema dovoljno pica za prodaju (" + getState() + " na stanju)");
+		if (getSize() < numberOfSoldPizzas) {
+			System.out.println("Nema dovoljno pica za prodaju (" + getSize() + " na stanju)");
 			return;
 		} else {
 			for (int i = 0; i < numberOfSoldPizzas; i++) {
 				removePizzaFromList();
 			}
 		}
-		System.out.println("\t\t\tProdali ste " + numberOfSoldPizzas + " picu/e i novo stanje je " + getState());
+		System.out.println("\t\t\tProdali ste " + numberOfSoldPizzas + " picu/e i novo stanje je " + getSize());
 	}
 }
