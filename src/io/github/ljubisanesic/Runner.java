@@ -73,11 +73,10 @@ public class Runner {
 	private static void makeAMeal(Pizzeria pizzeria) {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		int choice = -1;
 
-		while (choice != 2) {
+		while (true) {
 			System.out.println("\t\t1. Pica " + "\n\t\t2. Nazad ");
-			choice = input.nextInt();
+			int choice = input.nextInt();
 
 			switch (choice) {
 			case 1:
@@ -86,7 +85,7 @@ public class Runner {
 				pizzeria.makePizzas(numberOfMadePizzas);
 				break;
 			case 2:
-				break;
+				return;
 			default:
 				System.out.println("Pogresan unos , pokusajte ponovo:");
 				break;
