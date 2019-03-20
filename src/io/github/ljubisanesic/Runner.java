@@ -41,7 +41,7 @@ public class Runner {
 	}
 
 	/** Method for making and selling of articles */
-	public static void showSellingMenu(Pizzeria pizzeria) {
+	private static void showSellingMenu(Pizzeria pizzeria) {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 
@@ -114,7 +114,7 @@ public class Runner {
 
 	}
 
-	public static void showOnStock(Pizzeria pizzeria) {
+	private static void showOnStock(Pizzeria pizzeria) {
 		System.out.println("\tNa stanju " + pizzeria.getSize() + " pice/a");
 	}
 }
