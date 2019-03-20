@@ -3,7 +3,7 @@ package io.github.ljubisanesic;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TestPicerija {
+public class Runner {
 
 	public static void main(String[] args) {
 
@@ -21,10 +21,10 @@ public class TestPicerija {
 
 				switch (choice) {
 				case 1: 
-					selling(pizzeria);
+					showSellingMenu(pizzeria);
 					break;
 				case 2:
-					state(pizzeria);
+					showOnStock(pizzeria);
 					break;
 				case 3:
 					input.close();
@@ -44,7 +44,7 @@ public class TestPicerija {
 	}
 
 	/** Method for making and selling of articles */
-	public static void selling(Pizzeria pizzeria) {
+	public static void showSellingMenu(Pizzeria pizzeria) {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		int choice = -1;
@@ -120,7 +120,7 @@ public class TestPicerija {
 
 	}
 
-	public static void state(Pizzeria pizzeria) {
+	public static void showOnStock(Pizzeria pizzeria) {
 		System.out.println("\tNa stanju " + pizzeria.getSize() + " pice/a");
 	}
 }
