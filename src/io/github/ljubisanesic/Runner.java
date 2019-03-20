@@ -8,16 +8,13 @@ public class Runner {
 	public static void main(String[] args) {
 
 		Pizzeria pizzeria = new Pizzeria();
-		pizzeria.makePizzas(3);
-		pizzeria.sellPizza(2);
 
 		Scanner input = new Scanner(System.in);
-		int choice = -1;
 
-		while (choice != 3) {
+		while (true) {
 			try {
 				System.out.println("1. Prodaja " + "\n2. Stanje " + "\n3. Zatvori program ");
-				choice = input.nextInt();
+				int choice = input.nextInt();
 
 				switch (choice) {
 				case 1: 
