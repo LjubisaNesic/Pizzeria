@@ -47,11 +47,10 @@ public class Runner {
 	public static void showSellingMenu(Pizzeria pizzeria) {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		int choice = -1;
 
-		while (choice != 3) {
+		while (true) {
 			System.out.println("\t1. Napravi jelo " + "\n\t2. Prodaj " + "\n\t3. Nazad");
-			choice = input.nextInt();
+			int choice = input.nextInt();
 
 			switch (choice) {
 			case 1:
@@ -61,7 +60,7 @@ public class Runner {
 				sellAMeal(pizzeria);
 				break;
 			case 3:
-				break;
+				return;
 			default:
 				System.out.println("Pogresan unos , pokusajte ponovo:");
 				break;
