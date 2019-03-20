@@ -4,6 +4,7 @@ public class Pizza {
 
 	private String name;
 	private double price;
+	private String sizeOfPizza;
 
 	public Pizza() {
 
@@ -29,5 +30,14 @@ public class Pizza {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public String getSizeOfPizza() {
+		return sizeOfPizza;
+	}
+
+	public void setSizeOfPizza(String sizeOfPizza) {
+		this.sizeOfPizza = sizeOfPizza;
+	}
+
 
 }
