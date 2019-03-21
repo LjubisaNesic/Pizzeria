@@ -10,9 +10,10 @@ public class Pizza {
 
 	}
 
-	public Pizza(String name, double price) {
+	public Pizza(String name, double price, String sizeOfPizza) {
 		this.name = name;
 		this.price = price;
+		this.sizeOfPizza = sizeOfPizza;
 	}
 
 	public String getName() {
