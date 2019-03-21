@@ -1,13 +1,13 @@
 package io.github.ljubisanesic;
 
-public class Bianca extends Pizza {
+public class Bianka extends Pizza {
 	
 	
-	public Bianca() {
+	public Bianka() {
 		this.setName("Bianca");
 	}
 	
-	public Bianca(double price, String sizeOfPizza) {
+	public Bianka(double price, String sizeOfPizza) {
 		this();
 		setPrice(price);
 		setSizeOfPizza(sizeOfPizza);
