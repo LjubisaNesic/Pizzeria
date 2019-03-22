@@ -1,6 +1,8 @@
 package io.github.ljubisanesic;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Runner {
@@ -17,7 +19,7 @@ public class Runner {
 				int choice = input.nextInt();
 
 				switch (choice) {
-				case 1: 
+				case 1:
 					showSellingMenu(pizzeria);
 					break;
 				case 2:
@@ -27,8 +29,8 @@ public class Runner {
 					input.close();
 					System.out.println("Kraj programa!");
 					System.exit(0);
-				default : 
-						System.out.println("Pogresan unos pokusajte ponovo: ");
+				default:
+					System.out.println("Pogresan unos pokusajte ponovo: ");
 				}
 
 			} catch (InputMismatchException e) {
@@ -76,9 +78,10 @@ public class Runner {
 
 			switch (choice) {
 			case 1:
+				Pizza pizza = choseKindOfPizza();
 				System.out.print("\t\t\tKoliko pica zelite da se napravi (" + pizzeria.getSize() + " na stanju): ");
 				int numberOfMadePizzas = input.nextInt();
-				pizzeria.makePizzas(numberOfMadePizzas);
+				pizzeria.makePizzas(numberOfMadePizzas, pizza);
 				break;
 			case 2:
 				return;
@@ -116,5 +119,46 @@ public class Runner {
 
 	private static void showOnStock(Pizzeria pizzeria) {
 		System.out.println("\tNa stanju " + pizzeria.getSize() + " pice/a");
+	}
+
+	private static Pizza choseKindOfPizza() {
+
+		@SuppressWarnings("resource")
+		Scanner input = new Scanner(System.in);
+		Pizza pizza = new Pizza();
+		List<Pizza> kindOfPizzas = new ArrayList<Pizza>();
+
+		kindOfPizzas.add(new Bianka());
+		kindOfPizzas.add(new Margherita());
+		kindOfPizzas.add(new Vesuvio());
+		kindOfPizzas.add(new Capricciosa());
+		kindOfPizzas.add(new Sorrentina());
+		kindOfPizzas.add(new Siciliana());
+		kindOfPizzas.add(new Cacciatore());
+		kindOfPizzas.add(new Vegetariana());
+		kindOfPizzas.add(new HotPizza());
+		kindOfPizzas.add(new Calzone());
+		kindOfPizzas.add(new PikadoPizza());
+		kindOfPizzas.add(new PolloPizza());
+
+		while (true) {
+			for (int i = 0; i < kindOfPizzas.size(); i++) {
+				System.out.println("\t\t\t" + (i + 1) + ". " + kindOfPizzas.get(i).getName());
+			}
+
+			int choice = input.nextInt();
+
+			if (choice >= 1 && choice <= kindOfPizzas.size()) {
+				pizza = kindOfPizzas.get(choice - 1);
+				System.out.println("\t\t\tIzabrali ste " + kindOfPizzas.get(choice - 1).getName());
+				break;
+			} else {
+				System.out.println("Pogresan unos pokusajte ponovo: ");
+				continue;
+			}
+
+		}
+
+		return pizza;
 	}
 }

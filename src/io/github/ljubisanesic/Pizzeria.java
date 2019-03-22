@@ -19,8 +19,7 @@ public class Pizzeria {
 		return listOfPizzas.size();
 	}
 	
-	private void addPizzaToList() {
-		Pizza pizza = new Pizza();
+	private void addPizzaToList(Pizza pizza) {
 		this.listOfPizzas.add(pizza);
 	}
 	
@@ -28,9 +27,9 @@ public class Pizzeria {
 		this.listOfPizzas.remove(listOfPizzas.size() - 1);
 	}
 	
-	public void makePizzas(int numberOfMadePizzas) {
+	public void makePizzas(int numberOfMadePizzas, Pizza pizza) {
 		for (int i = 0; i < numberOfMadePizzas; i++) {
-			addPizzaToList();
+			addPizzaToList(pizza);
 		}
 		System.out.println("\t\t\tNapravljene su " + numberOfMadePizzas + " pica/e i novo stanje je " + getSize());
 	}
