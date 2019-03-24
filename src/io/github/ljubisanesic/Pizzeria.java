@@ -34,9 +34,9 @@ public class Pizzeria {
 		System.out.println("\t\t\tNapravljene su " + numberOfMadePizzas + " pica/e i novo stanje je " + getSize());
 	}
 
-	public void sellPizza(int numberOfSoldPizzas) {
-		if (getSize() < numberOfSoldPizzas) {
-			System.out.println("Nema dovoljno pica za prodaju (" + getSize() + " na stanju)");
+	public void sellPizza(int numberOfSoldPizzas, Pizza pizza) {
+		if (getNumberOfPizzasByType(pizza) < numberOfSoldPizzas) {
+			System.out.println("Nema dovoljno " + pizza.getName() + " za prodaju (" + getSize() + " na stanju)");
 			return;
 		} else {
 			for (int i = 0; i < numberOfSoldPizzas; i++) {
@@ -44,5 +44,17 @@ public class Pizzeria {
 			}
 		}
 		System.out.println("\t\t\tProdali ste " + numberOfSoldPizzas + " picu/e i novo stanje je " + getSize());
+	}
+	
+	private int getNumberOfPizzasByType(Pizza pizza) {
+		int numberOfPizzasByType = 0;
+		
+		for (int i = 0; i < this.listOfPizzas.size(); i++) {
+			if(pizza.getName().equals(listOfPizzas.get(i).getName())) {
+				numberOfPizzasByType++;
+			}
+		}
+		
+		return numberOfPizzasByType;
 	}
 }
