@@ -103,9 +103,11 @@ public class Runner {
 
 			switch (choice) {
 			case 1:
+				Pizza pizza = choseKindOfPizza();
+				
 				System.out.print("\t\t\tKoliko pica zelite da prodate (" + pizzeria.getSize() + " na stanju): ");
 				int numberOfSoldPizzas = input.nextInt();
-				pizzeria.sellPizza(numberOfSoldPizzas);
+				pizzeria.sellPizza(numberOfSoldPizzas, pizza);
 				break;
 			case 2:
 				return;
