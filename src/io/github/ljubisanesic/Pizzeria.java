@@ -24,7 +24,12 @@ public class Pizzeria {
 	}
 	
 	private void removePizzaFromList(Pizza pizza) {
-		this.listOfPizzas.remove(pizza);
+		for (int i = 0; i < this.listOfPizzas.size(); i++) {
+			if (this.listOfPizzas.get(i).getName().equals(pizza.getName())) {
+				this.listOfPizzas.remove(i);
+				return;
+			}
+		}
 	}
 	
 	public void makePizzas(int numberOfMadePizzas, Pizza pizza) {
