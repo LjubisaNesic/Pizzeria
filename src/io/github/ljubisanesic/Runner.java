@@ -10,7 +10,6 @@ public class Runner {
 	public static void main(String[] args) {
 
 		Pizzeria pizzeria = new Pizzeria();
-
 		Scanner input = new Scanner(System.in);
 
 		while (true) {
@@ -79,7 +78,7 @@ public class Runner {
 			switch (choice) {
 			case 1:
 				Pizza pizza = choseKindOfPizza();
-				System.out.print("\t\t\tKoliko pica zelite da se napravi (" + pizzeria.getSize() + " na stanju): ");
+				System.out.print("\t\t\tKoliko " + pizza.getName() +  " zelite da se napravi (" + pizzeria.getNumberOfPizzasByType(pizza) + " na stanju): ");
 				int numberOfMadePizzas = input.nextInt();
 				pizzeria.makePizzas(numberOfMadePizzas, pizza);
 				break;
@@ -105,7 +104,7 @@ public class Runner {
 			case 1:
 				Pizza pizza = choseKindOfPizza();
 				
-				System.out.print("\t\t\tKoliko pica zelite da prodate (" + pizzeria.getSize() + " na stanju): ");
+				System.out.print("\t\t\tKoliko " + pizza.getName() + " zelite da prodate (" + pizzeria.getNumberOfPizzasByType(pizza) + " na stanju): ");
 				int numberOfSoldPizzas = input.nextInt();
 				pizzeria.sellPizza(numberOfSoldPizzas, pizza);
 				break;
@@ -120,7 +119,31 @@ public class Runner {
 	}
 
 	private static void showOnStock(Pizzeria pizzeria) {
-		System.out.println("\tNa stanju " + pizzeria.getSize() + " pice/a");
+		
+		if (pizzeria.getSize() < 1) {
+			System.out.println("Nema pica na stanju");
+			return;
+		}
+		
+		List<Pizza> kindOfPizzas = new ArrayList<Pizza>();
+
+		kindOfPizzas.add(new Bianka());
+		kindOfPizzas.add(new Margherita());
+		kindOfPizzas.add(new Vesuvio());
+		kindOfPizzas.add(new Capricciosa());
+		kindOfPizzas.add(new Sorrentina());
+		kindOfPizzas.add(new Siciliana());
+		kindOfPizzas.add(new Cacciatore());
+		kindOfPizzas.add(new Vegetariana());
+		kindOfPizzas.add(new HotPizza());
+		kindOfPizzas.add(new Calzone());
+		kindOfPizzas.add(new PikadoPizza());
+		kindOfPizzas.add(new PolloPizza());
+		
+		for (int i = 0; i < kindOfPizzas.size(); i++ ) {
+			System.out.println("\t" + (i + 1) + ". " + kindOfPizzas.get(i).getName() + " na stanju " + pizzeria.getNumberOfPizzasByType(kindOfPizzas.get(i)));
+		}
+//		System.out.println(pizzeria.toString());
 	}
 
 	private static Pizza choseKindOfPizza() {

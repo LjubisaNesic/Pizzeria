@@ -15,7 +15,7 @@ public class Pizzeria {
 		this.listOfPizzas = listOfPizzas;
 	}
 	
-	public int getSize() {
+	public int  getSize() {
 		return listOfPizzas.size();
 	}
 	
@@ -36,22 +36,22 @@ public class Pizzeria {
 		for (int i = 0; i < numberOfMadePizzas; i++) {
 			addPizzaToList(pizza);
 		}
-		System.out.println("\t\t\tNapravljene su " + numberOfMadePizzas + " pica/e i novo stanje je " + getSize());
+		System.out.println("\t\t\tNapravljene su " + numberOfMadePizzas + " " +  pizza.getName() + " i novo stanje je " + getNumberOfPizzasByType(pizza));
 	}
 
 	public void sellPizza(int numberOfSoldPizzas, Pizza pizza) {
 		if (getNumberOfPizzasByType(pizza) < numberOfSoldPizzas) {
-			System.out.println("Nema dovoljno " + pizza.getName() + " za prodaju (" + getSize() + " na stanju)");
+			System.out.println("Nema dovoljno " + pizza.getName() + " za prodaju (" + getNumberOfPizzasByType(pizza) + " na stanju)");
 			return;
 		} else {
 			for (int i = 0; i < numberOfSoldPizzas; i++) {
 				removePizzaFromList(pizza);
 			}
 		}
-		System.out.println("\t\t\tProdali ste " + numberOfSoldPizzas + " picu/e i novo stanje je " + getSize());
+		System.out.println("\t\t\tProdali ste " + numberOfSoldPizzas + " " + pizza.getName() + " i novo stanje je " + getNumberOfPizzasByType(pizza));
 	}
 	
-	private int getNumberOfPizzasByType(Pizza pizza) {
+	public int getNumberOfPizzasByType(Pizza pizza) {
 		int numberOfPizzasByType = 0;
 		
 		for (int i = 0; i < this.listOfPizzas.size(); i++) {
@@ -62,4 +62,5 @@ public class Pizzeria {
 		
 		return numberOfPizzasByType;
 	}
+	
 }
