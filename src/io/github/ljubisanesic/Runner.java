@@ -1,14 +1,12 @@
 package io.github.ljubisanesic;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class Runner {
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws Exception {
+		System.out.println("Loading... :)");
 		Pizzeria pizzeria = new Pizzeria();
 		Scanner input = new Scanner(System.in);
 
@@ -41,8 +39,12 @@ public class Runner {
 
 	}
 
-	/** Method for making and selling of articles */
-	private static void showSellingMenu(Pizzeria pizzeria) {
+	/**
+	 * Method for making and selling of articles
+	 * 
+	 * @throws Exception
+	 */
+	private static void showSellingMenu(Pizzeria pizzeria) throws Exception {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 
@@ -67,7 +69,7 @@ public class Runner {
 
 	}
 
-	private static void makeAMeal(Pizzeria pizzeria) {
+	private static void makeAMeal(Pizzeria pizzeria) throws Exception {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 
@@ -77,10 +79,12 @@ public class Runner {
 
 			switch (choice) {
 			case 1:
-				Pizza pizza = choseKindOfPizza();
-				System.out.print("\t\t\tKoliko " + pizza.getName() +  " zelite da se napravi (" + pizzeria.getNumberOfPizzasByType(pizza) + " na stanju): ");
+				int pizzaID = choseKindOfPizza(pizzeria);
+
+				System.out.print("\t\t\tKoliko " + pizzeria.getPizzaNameByIndex(pizzaID) + " zelite da se napravi ("
+						+ pizzeria.getNumberOfPizzasByID(pizzaID) + " na stanju): ");
 				int numberOfMadePizzas = input.nextInt();
-				pizzeria.makePizzas(numberOfMadePizzas, pizza);
+				pizzeria.makePizzas(numberOfMadePizzas, pizzaID);
 				break;
 			case 2:
 				return;
@@ -92,7 +96,7 @@ public class Runner {
 
 	}
 
-	private static void sellAMeal(Pizzeria pizzeria) {
+	private static void sellAMeal(Pizzeria pizzeria) throws Exception {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 
@@ -102,11 +106,11 @@ public class Runner {
 
 			switch (choice) {
 			case 1:
-				Pizza pizza = choseKindOfPizza();
-				
-				System.out.print("\t\t\tKoliko " + pizza.getName() + " zelite da prodate (" + pizzeria.getNumberOfPizzasByType(pizza) + " na stanju): ");
+				int pizzaID = choseKindOfPizza(pizzeria);
+				System.out.print("\t\t\tKoliko " + pizzeria.getPizzaNameByIndex(pizzaID) + " zelite da prodate ("
+						+ pizzeria.getNumberOfPizzasByID(pizzaID) + " na stanju): ");
 				int numberOfSoldPizzas = input.nextInt();
-				pizzeria.sellPizza(numberOfSoldPizzas, pizza);
+				pizzeria.sellPizza(numberOfSoldPizzas, pizzaID);
 				break;
 			case 2:
 				return;
@@ -118,72 +122,30 @@ public class Runner {
 
 	}
 
-	private static void showOnStock(Pizzeria pizzeria) {
-		
-		if (pizzeria.getSize() < 1) {
-			System.out.println("Nema pica na stanju");
-			return;
-		}
-		
-		List<Pizza> kindOfPizzas = new ArrayList<Pizza>();
+	private static void showOnStock(Pizzeria pizzeria) throws Exception {
 
-		kindOfPizzas.add(new Bianka());
-		kindOfPizzas.add(new Margherita());
-		kindOfPizzas.add(new Vesuvio());
-		kindOfPizzas.add(new Capricciosa());
-		kindOfPizzas.add(new Sorrentina());
-		kindOfPizzas.add(new Siciliana());
-		kindOfPizzas.add(new Cacciatore());
-		kindOfPizzas.add(new Vegetariana());
-		kindOfPizzas.add(new HotPizza());
-		kindOfPizzas.add(new Calzone());
-		kindOfPizzas.add(new PikadoPizza());
-		kindOfPizzas.add(new PolloPizza());
-		
-		for (int i = 0; i < kindOfPizzas.size(); i++ ) {
-			System.out.println("\t" + (i + 1) + ". " + kindOfPizzas.get(i).getName() + " na stanju " + pizzeria.getNumberOfPizzasByType(kindOfPizzas.get(i)));
-		}
-//		System.out.println(pizzeria.toString());
+		pizzeria.showAllPizzasOnStock();
+
 	}
 
-	private static Pizza choseKindOfPizza() {
+	private static int choseKindOfPizza(Pizzeria pizzeria) throws Exception {
+		int pizzaID = 0;
 
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		Pizza pizza = new Pizza();
-		List<Pizza> kindOfPizzas = new ArrayList<Pizza>();
 
-		kindOfPizzas.add(new Bianka());
-		kindOfPizzas.add(new Margherita());
-		kindOfPizzas.add(new Vesuvio());
-		kindOfPizzas.add(new Capricciosa());
-		kindOfPizzas.add(new Sorrentina());
-		kindOfPizzas.add(new Siciliana());
-		kindOfPizzas.add(new Cacciatore());
-		kindOfPizzas.add(new Vegetariana());
-		kindOfPizzas.add(new HotPizza());
-		kindOfPizzas.add(new Calzone());
-		kindOfPizzas.add(new PikadoPizza());
-		kindOfPizzas.add(new PolloPizza());
+		pizzeria.showAllPizzas();
 
+		System.out.print("Izaberi redni broj pizze: ");
 		while (true) {
-			for (int i = 0; i < kindOfPizzas.size(); i++) {
-				System.out.println("\t\t\t" + (i + 1) + ". " + kindOfPizzas.get(i).getName());
-			}
-
-			int choice = input.nextInt();
-
-			if (choice >= 1 && choice <= kindOfPizzas.size()) {
-				pizza = kindOfPizzas.get(choice - 1);
-				System.out.println("\t\t\tIzabrali ste " + kindOfPizzas.get(choice - 1).getName());
-				break;
+			pizzaID = input.nextInt();
+			if (pizzaID < 1 || pizzaID > pizzeria.getNumberOfAllPizzas()) {
+				System.out.print("Pogresan unos , pokusajte ponovo: ");
 			} else {
-				System.out.println("Pogresan unos pokusajte ponovo: ");
-				continue;
+				System.out.println("Izabrali ste " + pizzeria.getPizzaNameByIndex(pizzaID) + " " + pizzeria.getPizzaSizeByIndex(pizzaID));
+				return pizzaID;
 			}
-
 		}
 
-		return pizza;
 	}
 }
