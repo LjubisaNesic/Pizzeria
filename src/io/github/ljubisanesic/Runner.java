@@ -24,6 +24,7 @@ public class Runner {
 					break;
 				case 3:
 					input.close();
+					pizzeria.close();
 					System.out.println("Kraj programa!");
 					System.exit(0);
 				default:
