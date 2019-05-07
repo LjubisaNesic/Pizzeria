@@ -166,6 +166,7 @@ public class Pizzeria {
 			}
 			
 		} catch (Exception e) {
+			System.out.println(e);
 		}
 		
 	}
