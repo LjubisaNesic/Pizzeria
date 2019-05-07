@@ -73,7 +73,7 @@ public class Pizzeria {
 		if (getNumberOfPizzasByID(pizzaID) < numberOfSoldPizzas) {
 			System.out.println("Nema dovoljno " + getPizzaNameByIndex(pizzaID) + " za prodaju ("
 					+ getNumberOfPizzasByID(pizzaID) + " na stanju)");
-			return;
+			
 		} else {
 			int newStock = getNumberOfPizzasByID(pizzaID) - numberOfSoldPizzas;
 
@@ -82,10 +82,11 @@ public class Pizzeria {
 			preparedStatement.setInt(2, pizzaID);
 
 			preparedStatement.executeUpdate();
+			
+			System.out.println("\t\t\tProdali ste " + numberOfSoldPizzas + " " + getPizzaNameByIndex(pizzaID)
+			+ " i novo stanje je " + getNumberOfPizzasByID(pizzaID));
 		}
 
-		System.out.println("\t\t\tProdali ste " + numberOfSoldPizzas + " " + getPizzaNameByIndex(pizzaID)
-				+ " i novo stanje je " + getNumberOfPizzasByID(pizzaID));
 	}
 
 	public String getPizzaNameByIndex(int pizzaID) throws Exception {
