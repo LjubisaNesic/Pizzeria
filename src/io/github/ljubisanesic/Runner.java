@@ -82,7 +82,7 @@ public class Runner {
 			case 1:
 				int pizzaID = choseKindOfPizza(pizzeria);
 
-				System.out.print("\t\t\tKoliko " + pizzeria.getPizzaNameByIndex(pizzaID) + " zelite da se napravi ("
+				System.out.print("\t\t\tKoliko " + pizzeria.getPizzaNameByID(pizzaID) + " zelite da se napravi ("
 						+ pizzeria.getNumberOfPizzasByID(pizzaID) + " na stanju): ");
 				int numberOfMadePizzas = input.nextInt();
 				pizzeria.makePizzas(numberOfMadePizzas, pizzaID);
@@ -108,7 +108,7 @@ public class Runner {
 			switch (choice) {
 			case 1:
 				int pizzaID = choseKindOfPizza(pizzeria);
-				System.out.print("\t\t\tKoliko " + pizzeria.getPizzaNameByIndex(pizzaID) + " zelite da prodate ("
+				System.out.print("\t\t\tKoliko " + pizzeria.getPizzaNameByID(pizzaID) + " zelite da prodate ("
 						+ pizzeria.getNumberOfPizzasByID(pizzaID) + " na stanju): ");
 				int numberOfSoldPizzas = input.nextInt();
 				pizzeria.sellPizza(numberOfSoldPizzas, pizzaID);
@@ -143,7 +143,7 @@ public class Runner {
 			if (pizzaID < 1 || pizzaID > pizzeria.getNumberOfAllPizzas()) {
 				System.out.print("Pogresan unos , pokusajte ponovo: ");
 			} else {
-				System.out.println("Izabrali ste " + pizzeria.getPizzaNameByIndex(pizzaID) + " " + pizzeria.getPizzaSizeByIndex(pizzaID));
+				System.out.println("Izabrali ste " + pizzeria.getPizzaNameByID(pizzaID) + " " + pizzeria.getPizzaSizeByIndex(pizzaID));
 				return pizzaID;
 			}
 		}
